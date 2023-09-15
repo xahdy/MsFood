@@ -1,4 +1,6 @@
 ﻿using AutoMapper;
+using Cadastro.Domain.Models;
+using Cadastro.Domain.Models.Dto;
 
 namespace Cadastro.Api.Profiles
 {
@@ -6,6 +8,9 @@ namespace Cadastro.Api.Profiles
     {
         public AutoMapperProfiles()
         {
+            CreateMap<Restaurante, RestauranteDto>();
+            CreateMap<Prato, PratoDto>();
+            CreateMap<Localizacao, LocalizacaoDto>();
         }
     }
 }
