@@ -1,5 +1,4 @@
-﻿using System;
-using Microsoft.EntityFrameworkCore.Migrations;
+﻿using Microsoft.EntityFrameworkCore.Migrations;
 using Npgsql.EntityFrameworkCore.PostgreSQL.Metadata;
 
 #nullable disable
@@ -22,8 +21,6 @@ namespace Cadastro.Infra.Migrations
                     Endereco = table.Column<string>(type: "text", nullable: false),
                     Latitude = table.Column<double>(type: "double precision", nullable: false),
                     Longitude = table.Column<double>(type: "double precision", nullable: false),
-                    DataCriacao = table.Column<DateTime>(type: "timestamp with time zone", nullable: false),
-                    DataUltimaAtualizacao = table.Column<DateTime>(type: "timestamp with time zone", nullable: false),
                     Deletado = table.Column<bool>(type: "boolean", nullable: false)
                 },
                 constraints: table =>
@@ -40,9 +37,7 @@ namespace Cadastro.Infra.Migrations
                     Proprietario = table.Column<string>(type: "text", nullable: false),
                     Nome = table.Column<string>(type: "text", nullable: false),
                     Cnpj = table.Column<string>(type: "text", nullable: false),
-                    LocalizacaoId = table.Column<int>(type: "integer", nullable: false),
-                    DataCriacao = table.Column<DateTime>(type: "timestamp with time zone", nullable: false),
-                    DataUltimaAtualizacao = table.Column<DateTime>(type: "timestamp with time zone", nullable: false),
+                    LocalizacaoId = table.Column<int>(type: "integer", nullable: true),
                     Deletado = table.Column<bool>(type: "boolean", nullable: false)
                 },
                 constraints: table =>
@@ -52,8 +47,7 @@ namespace Cadastro.Infra.Migrations
                         name: "FK_Restaurante_Localizacao_LocalizacaoId",
                         column: x => x.LocalizacaoId,
                         principalTable: "Localizacao",
-                        principalColumn: "Id",
-                        onDelete: ReferentialAction.Cascade);
+                        principalColumn: "Id");
                 });
 
             migrationBuilder.CreateTable(
@@ -66,8 +60,6 @@ namespace Cadastro.Infra.Migrations
                     Descricao = table.Column<string>(type: "text", nullable: false),
                     RestauranteId = table.Column<int>(type: "integer", nullable: false),
                     Preco = table.Column<decimal>(type: "numeric", nullable: false),
-                    DataCriacao = table.Column<DateTime>(type: "timestamp with time zone", nullable: false),
-                    DataUltimaAtualizacao = table.Column<DateTime>(type: "timestamp with time zone", nullable: false),
                     Deletado = table.Column<bool>(type: "boolean", nullable: false)
                 },
                 constraints: table =>

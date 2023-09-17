@@ -11,7 +11,7 @@
 
         public string Nome { get; private set; }
         public string Descricao { get; private set; }
-        public Restaurante? Restaurante { get; private set; }
+        public RestauranteDto? Restaurante { get; private set; }
         public decimal Preco { get; private set; }
     }
 }

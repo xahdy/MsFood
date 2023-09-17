@@ -12,7 +12,7 @@ using Npgsql.EntityFrameworkCore.PostgreSQL.Metadata;
 namespace Cadastro.Infra.Migrations
 {
     [DbContext(typeof(PostgresDbContext))]
-    [Migration("20230915185208_EntidadesCadastro")]
+    [Migration("20230916193744_EntidadesCadastro")]
     partial class EntidadesCadastro
     {
         /// <inheritdoc />
@@ -36,14 +36,6 @@ namespace Cadastro.Infra.Migrations
                     b.Property<string>("Cep")
                         .IsRequired()
                         .HasColumnType("text");
-
-                    b.Property<DateTime>("DataCriacao")
-                        .ValueGeneratedOnAddOrUpdate()
-                        .HasColumnType("timestamp with time zone");
-
-                    b.Property<DateTime>("DataUltimaAtualizacao")
-                        .ValueGeneratedOnAdd()
-                        .HasColumnType("timestamp with time zone");
 
                     b.Property<bool>("Deletado")
                         .HasColumnType("boolean");
@@ -70,14 +62,6 @@ namespace Cadastro.Infra.Migrations
                         .HasColumnType("integer");
 
                     NpgsqlPropertyBuilderExtensions.UseIdentityByDefaultColumn(b.Property<int>("Id"));
-
-                    b.Property<DateTime>("DataCriacao")
-                        .ValueGeneratedOnAddOrUpdate()
-                        .HasColumnType("timestamp with time zone");
-
-                    b.Property<DateTime>("DataUltimaAtualizacao")
-                        .ValueGeneratedOnAdd()
-                        .HasColumnType("timestamp with time zone");
 
                     b.Property<bool>("Deletado")
                         .HasColumnType("boolean");
@@ -115,18 +99,10 @@ namespace Cadastro.Infra.Migrations
                         .IsRequired()
                         .HasColumnType("text");
 
-                    b.Property<DateTime>("DataCriacao")
-                        .ValueGeneratedOnAddOrUpdate()
-                        .HasColumnType("timestamp with time zone");
-
-                    b.Property<DateTime>("DataUltimaAtualizacao")
-                        .ValueGeneratedOnAdd()
-                        .HasColumnType("timestamp with time zone");
-
                     b.Property<bool>("Deletado")
                         .HasColumnType("boolean");
 
-                    b.Property<int>("LocalizacaoId")
+                    b.Property<int?>("LocalizacaoId")
                         .HasColumnType("integer");
 
                     b.Property<string>("Nome")
@@ -159,9 +135,7 @@ namespace Cadastro.Infra.Migrations
                 {
                     b.HasOne("Cadastro.Domain.Models.Localizacao", "Localizacao")
                         .WithMany()
-                        .HasForeignKey("LocalizacaoId")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
+                        .HasForeignKey("LocalizacaoId");
 
                     b.Navigation("Localizacao");
                 });
