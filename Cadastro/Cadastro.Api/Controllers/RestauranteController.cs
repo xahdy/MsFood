@@ -3,6 +3,7 @@ using Cadastro.Domain.Interfaces;
 using Cadastro.Domain.Models;
 using Cadastro.Domain.Models.Dto;
 using Microsoft.AspNetCore.Mvc;
+using System.Text.Json;
 
 namespace Cadastro.Api.Controllers
 {
@@ -25,6 +26,7 @@ namespace Cadastro.Api.Controllers
 
         #region RESTAURANTE
         [HttpGet()]
+        [Tags("Restaurantes")]
         public async Task<ActionResult> RecuperarTodos()
         {
             try
@@ -41,6 +43,7 @@ namespace Cadastro.Api.Controllers
         }
 
         [HttpGet("{restauranteId}")]
+        [Tags("Restaurantes")]
         public async Task<ActionResult> RecuperarPorId([FromRoute] int restauranteId)
         {
             try
@@ -61,10 +64,22 @@ namespace Cadastro.Api.Controllers
         }
 
         [HttpPost()]
+        [Tags("Restaurantes")]
         public async Task<ActionResult> Cadastrar([FromBody] RestauranteDto restauranteDto)
         {
             try
             {
+                HttpResponseMessage response = null;
+                using (HttpClient client = new HttpClient())
+                {
+                    client.BaseAddress = new Uri("https://viacep.com.br/");
+                    response = await client.GetAsync($"/ws/{restauranteDto.Localizacao.Cep}/json/");
+                }
+                var buscaEndereco = await response.Content.ReadAsStringAsync();
+                var enderecoEncontrado = JsonSerializer.Deserialize<EnderecoEncontrado>(buscaEndereco);
+
+                restauranteDto.Localizacao.CompletarLocalizacao(enderecoEncontrado);
+
                 var restauranteParaAdicionar = _mapper.Map<Restaurante>(restauranteDto);
                 await _restauranteRepository.AddAsync(restauranteParaAdicionar);
                 await _restauranteRepository.SaveChangesAsync();
@@ -80,6 +95,7 @@ namespace Cadastro.Api.Controllers
         }
 
         [HttpPut("{restauranteId}")]
+        [Tags("Restaurantes")]
         public async Task<ActionResult> Atualizar([FromRoute] int restauranteId, [FromBody] RestauranteDto restauranteDto)
         {
             try
@@ -107,6 +123,7 @@ namespace Cadastro.Api.Controllers
         }
 
         [HttpDelete("{restauranteId}")]
+        [Tags("Restaurantes")]
         public async Task<ActionResult> Deletar([FromRoute] int restauranteId)
         {
             try
@@ -134,7 +151,9 @@ namespace Cadastro.Api.Controllers
         }
         #endregion
 
+        #region Pratos
         [HttpGet("{restauranteId}/pratos")]
+        [Tags("Pratos")]
         public async Task<ActionResult> RecuperarPratosRestaurante([FromRoute] int restauranteId)
         {
             try
@@ -150,6 +169,7 @@ namespace Cadastro.Api.Controllers
             }
         }
         [HttpPost("{restauranteId}/pratos")]
+        [Tags("Pratos")]
         public async Task<ActionResult> CadastrarPrato([FromRoute] int restauranteId, [FromBody] PratoDto pratoDto)
         {
             try
@@ -177,6 +197,7 @@ namespace Cadastro.Api.Controllers
             }
         }
         [HttpPut("{restauranteId}/pratos/{pratoId}")]
+        [Tags("Pratos")]
         public async Task<ActionResult> AtualizarPrato([FromRoute] int restauranteId, [FromRoute] int pratoId, [FromBody] PratoDto pratoDto)
         {
             try
@@ -210,7 +231,8 @@ namespace Cadastro.Api.Controllers
         }
 
         [HttpDelete("{restauranteId}/pratos/{pratoId}")]
-        public async Task<ActionResult> DeletarpRATO([FromRoute] int restauranteId, [FromRoute] int pratoId)
+        [Tags("Pratos")]
+        public async Task<ActionResult> DeletarPrato([FromRoute] int restauranteId, [FromRoute] int pratoId)
         {
             try
             {
@@ -242,5 +264,6 @@ namespace Cadastro.Api.Controllers
                 return StatusCode(500);
             }
         }
+        #endregion
     }
 }

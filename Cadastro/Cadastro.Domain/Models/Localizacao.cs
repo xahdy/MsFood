@@ -2,17 +2,21 @@
 {
     public class Localizacao : BaseEntity
     {
-        public Localizacao(string cep, string endereco, double latitude, double longitude)
+        public Localizacao(string cep, string logradouro, string numero, string bairro, string localidade, string uf)
         {
             Cep = cep;
-            Endereco = endereco;
-            Latitude = latitude;
-            Longitude = longitude;
+            Logradouro = logradouro;
+            Numero = numero;
+            Bairro = bairro;
+            Localidade = localidade;
+            Uf = uf;
         }
 
         public string Cep { get; private set; }
-        public string Endereco { get; private set; }
-        public double Latitude { get; private set; }
-        public double Longitude { get; private set; }
+        public string Logradouro { get; private set; }
+        public string Numero { get; private set; }
+        public string Bairro { get; private set; }
+        public string Localidade { get; private set; }
+        public string Uf { get; private set; }
     }
 }

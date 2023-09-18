@@ -18,9 +18,11 @@ namespace Cadastro.Infra.Migrations
                     Id = table.Column<int>(type: "integer", nullable: false)
                         .Annotation("Npgsql:ValueGenerationStrategy", NpgsqlValueGenerationStrategy.IdentityByDefaultColumn),
                     Cep = table.Column<string>(type: "text", nullable: false),
-                    Endereco = table.Column<string>(type: "text", nullable: false),
-                    Latitude = table.Column<double>(type: "double precision", nullable: false),
-                    Longitude = table.Column<double>(type: "double precision", nullable: false),
+                    Logradouro = table.Column<string>(type: "text", nullable: false),
+                    Numero = table.Column<string>(type: "text", nullable: false),
+                    Bairro = table.Column<string>(type: "text", nullable: false),
+                    Localidade = table.Column<string>(type: "text", nullable: false),
+                    Uf = table.Column<string>(type: "text", nullable: false),
                     Deletado = table.Column<bool>(type: "boolean", nullable: false)
                 },
                 constraints: table =>

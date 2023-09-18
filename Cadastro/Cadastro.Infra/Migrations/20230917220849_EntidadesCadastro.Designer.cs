@@ -12,7 +12,7 @@ using Npgsql.EntityFrameworkCore.PostgreSQL.Metadata;
 namespace Cadastro.Infra.Migrations
 {
     [DbContext(typeof(PostgresDbContext))]
-    [Migration("20230916193744_EntidadesCadastro")]
+    [Migration("20230917220849_EntidadesCadastro")]
     partial class EntidadesCadastro
     {
         /// <inheritdoc />
@@ -33,6 +33,10 @@ namespace Cadastro.Infra.Migrations
 
                     NpgsqlPropertyBuilderExtensions.UseIdentityByDefaultColumn(b.Property<int>("Id"));
 
+                    b.Property<string>("Bairro")
+                        .IsRequired()
+                        .HasColumnType("text");
+
                     b.Property<string>("Cep")
                         .IsRequired()
                         .HasColumnType("text");
@@ -40,15 +44,21 @@ namespace Cadastro.Infra.Migrations
                     b.Property<bool>("Deletado")
                         .HasColumnType("boolean");
 
-                    b.Property<string>("Endereco")
+                    b.Property<string>("Localidade")
                         .IsRequired()
                         .HasColumnType("text");
 
-                    b.Property<double>("Latitude")
-                        .HasColumnType("double precision");
+                    b.Property<string>("Logradouro")
+                        .IsRequired()
+                        .HasColumnType("text");
 
-                    b.Property<double>("Longitude")
-                        .HasColumnType("double precision");
+                    b.Property<string>("Numero")
+                        .IsRequired()
+                        .HasColumnType("text");
+
+                    b.Property<string>("Uf")
+                        .IsRequired()
+                        .HasColumnType("text");
 
                     b.HasKey("Id");
 
@@ -123,7 +133,7 @@ namespace Cadastro.Infra.Migrations
             modelBuilder.Entity("Cadastro.Domain.Models.Prato", b =>
                 {
                     b.HasOne("Cadastro.Domain.Models.Restaurante", "Restaurante")
-                        .WithMany()
+                        .WithMany("ListaPratos")
                         .HasForeignKey("RestauranteId")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
@@ -138,6 +148,11 @@ namespace Cadastro.Infra.Migrations
                         .HasForeignKey("LocalizacaoId");
 
                     b.Navigation("Localizacao");
+                });
+
+            modelBuilder.Entity("Cadastro.Domain.Models.Restaurante", b =>
+                {
+                    b.Navigation("ListaPratos");
                 });
 #pragma warning restore 612, 618
         }

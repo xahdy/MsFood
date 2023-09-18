@@ -3,6 +3,9 @@ using Cadastro.Infra.Repository;
 using Cadastro.Infra;
 using Microsoft.EntityFrameworkCore;
 using Cadastro.Api.Profiles;
+using OpenTelemetry.Resources;
+using OpenTelemetry.Trace;
+using Cadastro.Api.Tracing;
 
 var builder = WebApplication.CreateBuilder(args);
 IHostEnvironment env = builder.Environment;
@@ -24,6 +27,8 @@ builder.Services.AddControllers();
 // Learn more about configuring Swagger/OpenAPI at https://aka.ms/aspnetcore/swashbuckle
 builder.Services.AddEndpointsApiExplorer();
 builder.Services.AddSwaggerGen();
+
+builder.Services.AddOpenTelemetry(builder);
 
 var app = builder.Build();
 
