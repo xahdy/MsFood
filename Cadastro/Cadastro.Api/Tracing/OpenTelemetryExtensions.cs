@@ -1,4 +1,5 @@
-﻿using OpenTelemetry.Resources;
+﻿using Npgsql;
+using OpenTelemetry.Resources;
 using OpenTelemetry.Trace;
 
 namespace Cadastro.Api.Tracing
@@ -18,6 +19,7 @@ namespace Cadastro.Api.Tracing
                     .SetResourceBuilder(resourceBuilder)
                     .AddAspNetCoreInstrumentation()
                     .SetSampler(new AlwaysOnSampler())
+                    .AddNpgsql()
                     .AddJaegerExporter(jaegerOptions =>
                     {
                         jaegerOptions.AgentHost = builder.Configuration["Jaeger:AgentHost"];

@@ -1,0 +1,2 @@
+FROM grafana/agent:main-4c083e0
+ADD agent.yml /etc/grafana-agent
