@@ -11,21 +11,26 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Pedido", "Pedido", "{135276
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Cadastro.Api", "Cadastro\Cadastro.Api\Cadastro.Api.csproj", "{A56A5169-ECD0-44A3-9031-308E7FBB7890}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Marketplace.Api", "Marketplace\Marketplace.Api\Marketplace.Api.csproj", "{3C89D908-DFA6-440D-A460-FFFBF9C0AB6C}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Marketplace.Api", "Marketplace\Marketplace.Api\Marketplace.Api.csproj", "{3C89D908-DFA6-440D-A460-FFFBF9C0AB6C}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Pedido.Api", "Pedido\Pedido.Api\Pedido.Api.csproj", "{CC291875-2EC0-4BC7-BCA8-51C7AC1ADA2A}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Pedido.Api", "Pedido\Pedido.Api\Pedido.Api.csproj", "{CC291875-2EC0-4BC7-BCA8-51C7AC1ADA2A}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Cadastro.Domain", "Cadastro\Cadastro.Domain\Cadastro.Domain.csproj", "{CEB25C42-45C6-459E-AC33-2786D495516B}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Cadastro.Domain", "Cadastro\Cadastro.Domain\Cadastro.Domain.csproj", "{CEB25C42-45C6-459E-AC33-2786D495516B}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Cadastro.Infra", "Cadastro\Cadastro.Infra\Cadastro.Infra.csproj", "{8DAE6B0D-1254-44A8-B3D0-2EBC60B12E95}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Cadastro.Infra", "Cadastro\Cadastro.Infra\Cadastro.Infra.csproj", "{8DAE6B0D-1254-44A8-B3D0-2EBC60B12E95}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Marketplace.Domain", "Marketplace\Marketplace.Domain\Marketplace.Domain.csproj", "{9FA38548-BD0C-49C5-A89A-164F8EF5BA7E}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Marketplace.Domain", "Marketplace\Marketplace.Domain\Marketplace.Domain.csproj", "{9FA38548-BD0C-49C5-A89A-164F8EF5BA7E}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Marketplace.Infra", "Marketplace\Marketplace.Infra\Marketplace.Infra.csproj", "{71A41436-CA0E-485F-AF33-41EBDA14A830}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Marketplace.Infra", "Marketplace\Marketplace.Infra\Marketplace.Infra.csproj", "{71A41436-CA0E-485F-AF33-41EBDA14A830}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Pedido.Domain", "Pedido\Pedido.Domain\Pedido.Domain.csproj", "{429B2CC7-D5AC-4FFA-A338-B3367B418E3B}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Pedido.Domain", "Pedido\Pedido.Domain\Pedido.Domain.csproj", "{429B2CC7-D5AC-4FFA-A338-B3367B418E3B}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Pedido.Infra", "Pedido\Pedido.Infra\Pedido.Infra.csproj", "{D711B63A-365D-4A13-86D6-80B158450310}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Pedido.Infra", "Pedido\Pedido.Infra\Pedido.Infra.csproj", "{D711B63A-365D-4A13-86D6-80B158450310}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Itens de Solução", "Itens de Solução", "{FEA14D84-E136-4CBD-BDF1-9BEC23055254}"
+	ProjectSection(SolutionItems) = preProject
+		docker-compose.yml = docker-compose.yml
+	EndProjectSection
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
