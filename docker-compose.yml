@@ -31,3 +31,12 @@ services:
     image: grafana/grafana:10.1.2
     ports: 
         - "3000:3000"
+  artemis_ifood:
+    container_name: artemis_ifood
+    image: vromero/activemq-artemis:2.11.0
+    environment: 
+      ARTEMIS_USERNAME: guest
+      ARTEMIS_PASSWORD: guest
+    ports: 
+        - "5672:5672"
+        - "8161:8161"

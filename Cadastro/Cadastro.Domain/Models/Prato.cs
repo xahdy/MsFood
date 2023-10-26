@@ -22,6 +22,7 @@ namespace Cadastro.Domain.Models
 
         public void DefinirRestaurante(Restaurante restaurante) 
         {
+            RestauranteId = restaurante.Id;
             Restaurante = restaurante;
         }
         public void AtualizarPrato(PratoDto pratoDto)

@@ -1,8 +1,8 @@
-﻿using Cadastro.Domain.Interfaces;
+﻿using Marketplace.Domain.Interfaces;
 using Microsoft.EntityFrameworkCore;
 using System.Linq.Expressions;
 
-namespace Cadastro.Infra.Repository
+namespace Marketplace.Infra.Repository
 {
     public class Repository<T> : IRepository<T> where T : class
     {
@@ -26,11 +26,6 @@ namespace Cadastro.Infra.Repository
         public async Task<IEnumerable<T>> GetAllAsync()
         {
             return await _context.Set<T>().AsNoTracking().ToListAsync();
-        }
-
-        public DbSet<T> GetTable()
-        {
-            return _context.Set<T>();
         }
 
         public async Task<IEnumerable<T>> FindAsync(Expression<Func<T, bool>> expression)

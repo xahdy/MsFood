@@ -1,6 +1,8 @@
 ﻿using Cadastro.Domain.Models.Dto;
 using Cadastro.Domain.ValueObject;
+using System.Collections.ObjectModel;
 using System.ComponentModel.DataAnnotations.Schema;
+using System.Text.Json.Serialization;
 
 namespace Cadastro.Domain.Models
 {
@@ -19,10 +21,10 @@ namespace Cadastro.Domain.Models
 
         [ForeignKey("Localizacao")]
         public int? LocalizacaoId { get; private set; }
-        public Localizacao? Localizacao { get; private set; }
+        public Localizacao? Localizacao { get; set; }
 
         [InverseProperty("Restaurante")]
-        public ICollection<Prato> ListaPratos { get; private set; }
+        public  ICollection<Prato> ListaPratos { get; private set; }
 
         public void AtualizarRestaurante(RestauranteDto restaurante)
         {
