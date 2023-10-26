@@ -2,7 +2,6 @@
 **Objetivo:** Praticar a integração entre microsserviços, monitoramento, mensageria e Docker.
 
 ## Resumo
-
 O projeto **MsFood** é uma plataforma de microsserviços criada para praticar a integração de sistemas distribuídos e conceitos de microsserviços. Ele utiliza um conjunto de tecnologias e ferramentas, incluindo:
 
 - **.NET**: A estrutura principal usada para o desenvolvimento dos microsserviços.
@@ -16,6 +15,19 @@ O projeto **MsFood** é uma plataforma de microsserviços criada para praticar a
 - **Jaeger**: Plataforma de rastreamento distribuído que fornece insights sobre o fluxo de solicitações entre os microsserviços.
 
 - **Docker**: Plataforma de contêineres usada para empacotar e distribuir os microsserviços e suas dependências de forma consistente.
+
+### Microsserviço de Cadastro
+
+O Microsserviço de Cadastro é responsável por gerenciar as informações relacionadas aos restaurantes, pratos e localizações dos restaurantes. Os usuários podem adicionar novos restaurantes, pratos e detalhes de localização por meio deste serviço.
+
+### Microsserviço de Marketplace
+
+O Microsserviço de Marketplace permite que os usuários visualizem os pratos oferecidos pelos restaurantes e montem seus pedidos. No futuro, os usuários poderão escolher pratos, personalizar seus pedidos e fazer pedidos por meio deste serviço.
+
+### Microsserviço de Pedido
+
+O Microsserviço de Pedido é uma parte em desenvolvimento do projeto e será usado para que os usuários acompanhem o status e a entrega de seus pedidos. Este serviço fornecerá informações em tempo real sobre o andamento dos pedidos dos clientes.
+
 
 ## Próximos Passos
 
