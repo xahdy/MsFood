@@ -2,7 +2,9 @@
 using Cadastro.Domain.Interfaces;
 using Cadastro.Domain.Models;
 using Cadastro.Domain.Models.Dto;
+using Cadastro.Infra.Services;
 using Microsoft.AspNetCore.Mvc;
+using Microsoft.EntityFrameworkCore;
 using System.Text.Json;
 
 namespace Cadastro.Api.Controllers
@@ -15,13 +17,15 @@ namespace Cadastro.Api.Controllers
         private readonly IRepository<Prato> _pratoRepository;
         private readonly ILogger<RestauranteController> _logger;
         private readonly IMapper _mapper;
+        private readonly MessageProducer _messageProducer;
 
-        public RestauranteController(IRepository<Restaurante> restauranteRepository, IRepository<Prato> pratoRepository, ILogger<RestauranteController> logger, IMapper mapper)
+        public RestauranteController(IRepository<Restaurante> restauranteRepository, IRepository<Prato> pratoRepository, ILogger<RestauranteController> logger, IMapper mapper, MessageProducer messageProducer)
         {
             _restauranteRepository = restauranteRepository;
             _pratoRepository = pratoRepository;
             _logger = logger;
             _mapper = mapper;
+            _messageProducer = messageProducer;
         }
 
         #region RESTAURANTE
@@ -31,7 +35,7 @@ namespace Cadastro.Api.Controllers
         {
             try
             {
-                var listaRestaurantes = await _restauranteRepository.GetAllAsync();
+                var listaRestaurantes = _restauranteRepository.GetTable().Include(x => x.Localizacao).AsNoTracking();
                 var listaResultado = _mapper.Map<List<RestauranteDto>>(listaRestaurantes);
                 return Ok(listaResultado);
             }
@@ -84,7 +88,7 @@ namespace Cadastro.Api.Controllers
                 await _restauranteRepository.AddAsync(restauranteParaAdicionar);
                 await _restauranteRepository.SaveChangesAsync();
 
-
+                await _messageProducer.PublishAsync(restauranteParaAdicionar);
                 return Created("", restauranteDto);
             }
             catch (Exception ex)
@@ -174,7 +178,7 @@ namespace Cadastro.Api.Controllers
         {
             try
             {
-                var restauranteRecuperado = await _restauranteRepository.GetByIdAsync(restauranteId);
+                var restauranteRecuperado = _restauranteRepository.GetTable().Include(x => x.Localizacao).FirstOrDefault(x => x.Id == restauranteId);
 
                 if (restauranteRecuperado is null)
                 {
@@ -186,6 +190,9 @@ namespace Cadastro.Api.Controllers
 
                 await _pratoRepository.AddAsync(pratoParaAdicionar);
                 await _pratoRepository.SaveChangesAsync();
+                pratoParaAdicionar.Restaurante.ListaPratos.Clear();
+
+                await _messageProducer.PublishAsync(pratoParaAdicionar);
 
 
                 return Created("", pratoDto);
